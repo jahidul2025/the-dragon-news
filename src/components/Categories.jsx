@@ -1,6 +1,7 @@
 import React, { use } from 'react';
+import { NavLink } from 'react-router';
 
-const categoriesPromise = fetch('categories.json')
+const categoriesPromise = fetch('../../public/categories.json')
     .then(res => res.json())
 
 
@@ -8,8 +9,16 @@ const Categories = () => {
     // console.log(categoriesPromise);
     const categories = use(categoriesPromise)
     return (
-        <div className='font-bold'>
-            all categories({categories.length})
+        <div>
+            <h2 className='font-bold'> all categories({categories.length})</h2>
+            <div className='grid grid-cols-1 mt-5 gap-3'>
+                {categories.map(category => (
+                    <NavLink key={category.id}
+                        className={'btn gap-5 bg-base-100 border-0 hover:bg-base-300'}
+                        to={`/category/${category.id}`}
+                    >{category.name}</NavLink>
+                ))}
+            </div>
         </div>
     );
 };
