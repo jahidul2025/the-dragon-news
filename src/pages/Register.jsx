@@ -1,11 +1,7 @@
 import React from 'react';
 import { Form } from 'react-router';
 import { Link } from 'react-router';
-import { getAuth } from "firebase/auth";
-import app from '../firebase/firebase.config';
 
-
-const auth = getAuth(app);
 const Register = () => {
 
     const handleRegister = (e) => {
