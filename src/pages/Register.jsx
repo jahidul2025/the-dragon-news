@@ -1,12 +1,24 @@
 import React from 'react';
 import { Form } from 'react-router';
 import { Link } from 'react-router';
+import { getAuth } from "firebase/auth";
+import app from '../firebase/firebase.config';
 
+
+const auth = getAuth(app);
 const Register = () => {
 
     const handleRegister = (e) => {
         e.preventDefault()
-        console.log(e);
+
+        console.log(e.target);
+        const form = e.target;
+        const name = form.name.value;
+        const photo = form.Photo.value;
+        const email = form.email.value;
+        const password = form.Password.value;
+
+        console.log({ name, photo, email, password })
     }
     return (
         <div className='flex justify-center items-center min-h-screen'>
@@ -28,7 +40,7 @@ const Register = () => {
                         {/* Password */}
                         <label className="label">Password</label>
                         <input name='Password' type="password" className="input" placeholder="Password" required />
-                        <button className="btn btn-neutral mt-4">Register</button>
+                        <button type='submit' className="btn btn-neutral mt-4">Register</button>
                         <p className='font-semibold  text-center pt-5'>Already Have An Account ? <Link className=' text-secondary' to='/auth/login'>Login</Link></p>
                     </fieldset>
                 </Form>
