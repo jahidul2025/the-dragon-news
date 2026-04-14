@@ -9,7 +9,6 @@ const PrivetRoute = ({ children }) => {
     }
     else if (user && user?.email) {
         return children;
-
     }
     else return <Navigate to='/auth/login'></Navigate>
 
