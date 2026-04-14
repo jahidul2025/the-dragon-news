@@ -5,6 +5,8 @@ import CategoryNews from "../pages/CategoryNews";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import AuthLayout from "../layouts/AuthLayout";
+import NewsDetails from "../pages/NewsDetails";
+import PrivetRoute from "../Provider/PrivetRoute";
 
 const router = createBrowserRouter([
     {
@@ -18,27 +20,30 @@ const router = createBrowserRouter([
             {
                 path: "/category/:id",
                 element: <CategoryNews></CategoryNews>,
-                loader: () => fetch ('../../public/news.json')
+                loader: () => fetch('../../public/news.json')
             },
         ]
     },
     {
         path: "/auth",
         element: <AuthLayout></AuthLayout>,
-        children :[
+        children: [
             {
                 path: '/auth/login',
-                element:<Login></Login>
+                element: <Login></Login>
             },
             {
                 path: '/auth/register',
-                element:<Register></Register>
+                element: <Register></Register>
             },
         ]
     },
     {
-        path: "/news",
-        element: <h2>Welcome to the News Page</h2>
+        path: "/news-details/:id",
+        element: <PrivetRoute>
+            <NewsDetails></NewsDetails>
+        </PrivetRoute>,
+        loader: () => fetch('../../public/news.json')
     },
     {
         path: "/*",
